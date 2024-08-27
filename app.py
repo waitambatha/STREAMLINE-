@@ -2,13 +2,18 @@ import streamlit as st
 import pandas as pd
 import psycopg2
 import plotly.express as px
+from dotenv import load_dotenv
+import os
 
-# Database connection parameters
+# Load environment variables from .env file
+load_dotenv()
+
+# Database connection parameters from .env
 db_params = {
-    'host': 'localhost',
-    'database': 'stream',
-    'user': 'postgres',
-    'password': 'Mbatha45'
+    'host': os.getenv('DB_HOST'),
+    'database': os.getenv('DB_NAME'),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD')
 }
 
 # Create a function to fetch data from the database
