@@ -1,59 +1,97 @@
-# PostgreSQL Data Visualization with Streamlit
+# Streamline App
 
-This is a Streamlit application designed to connect to a PostgreSQL database and visualize data. The app allows users to enter SQL queries to retrieve data from a PostgreSQL database and visualize it using interactive charts.
+## Overview
 
-## Features
-
-- **Fetch Data:** Enter SQL queries to fetch data from a PostgreSQL database.
-- **Display Data:** View the retrieved data in a tabular format.
-- **Visualize Data:** Generate visualizations using Plotly (e.g., bar charts) based on the retrieved data.
+This Streamlit application visualizes data from a PostgreSQL database. The database connection details are securely managed through environment variables stored in the `.env` file.
 
 ## Prerequisites
 
-Before running the app, ensure you have the following installed:
+- Python 3.x
+- PostgreSQL database
+- Required Python packages (listed in `requirements.txt`)
 
-- **Python 3.6+**: Streamlit and other dependencies require Python.
-- **Streamlit**: For creating the web application.
-- **Psycopg2**: PostgreSQL adapter for Python.
-- **Pandas**: Data manipulation and analysis library.
-- **Plotly**: Library for interactive data visualization.
+## Setup
 
-You can install these dependencies using pip:
+### 1. Clone the Repository
 
 ```bash
-pip install streamlit psycopg2 pandas plotly
-Configuration
-Update the db_params dictionary in app.py with your PostgreSQL database credentials:
+git clone git@github.com:waitambatha/STREAMLINE-.git
+cd STREAMLINE-
+```
 
-python
-Copy code
-db_params = {
-    'host': 'localhost',
-    'database': 'stream',
-    'user': 'postgres',
-    'password': 'Mbatha45'
-}
-host: The hostname of your PostgreSQL server (e.g., localhost).
-database: The name of the PostgreSQL database (e.g., stream).
-user: The PostgreSQL username (e.g., postgres).
-password: The PostgreSQL password.
-Usage
-Save the Streamlit application code to a file named app.py.
+### 2. Create and Activate a Virtual Environment
 
-Open a terminal and navigate to the directory where app.py is located.
+It's recommended to use a virtual environment to manage dependencies.
 
-Run the Streamlit app using:
+```bash
+python -m venv venv
+source venv/bin/activate
+```
 
-bash
-Copy code
+### 3. Install Dependencies
+
+Install the necessary Python packages using `pip` and the provided `requirements.txt` file.
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+1. **Rename `.env.example` to `.env`:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Edit `.env` with your PostgreSQL connection details:**
+
+   Open `.env` in a text editor and set the following values:
+
+   ```plaintext
+   # Database connection settings
+   DB_HOST=localhost
+   DB_NAME=your_db_name
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+
+   # Optional: Add other configuration settings as needed
+   SECRET_KEY=your_secret_key
+   DEBUG=True
+   ```
+
+   - `DB_HOST`: The hostname of your PostgreSQL server (e.g., `localhost`).
+   - `DB_NAME`: The name of your PostgreSQL database.
+   - `DB_USER`: Your PostgreSQL username.
+   - `DB_PASSWORD`: The password for your PostgreSQL user.
+   - `SECRET_KEY`: (Optional) A secret key for cryptographic operations.
+   - `DEBUG`: Set to `True` for development mode or `False` for production.
+
+### 5. Run the Application
+
+Start the Streamlit application by running the following command:
+
+```bash
 streamlit run app.py
-The application will open in your default web browser. Enter your SQL query into the provided text area and click the "Fetch Data" button to retrieve and visualize the data.
+```
 
-Example Queries
-You can use SQL queries such as:
+### 6. Access the Application
 
-SELECT * FROM your_table_name LIMIT 100; to retrieve data from a specific table.
-Customize the SQL query based on the schema and data in your PostgreSQL database.
-Troubleshooting
-Error Fetching Data: Ensure your PostgreSQL server is running and the connection parameters are correct.
-Empty Data or Missing Columns: Verify that your SQL query returns the expected columns and data.
+Once the application is running, open your browser and navigate to the local URL provided by Streamlit to view and interact with your data visualizations.
+
+## `.env` File
+
+The `.env` file is crucial for configuring the database connection. Ensure that the file is properly set up with your own credentials and is placed in the root directory of your project.
+
+### Example `.env` File
+
+```plaintext
+# Database connection settings
+DB_HOST=localhost
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+
+# Optional: Add other configuration settings as needed
+SECRET_KEY=your_secret_key
+DEBUG=True
